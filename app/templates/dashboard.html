@@ -1,17 +1,51 @@
 {% extends "layout.html" %}
+
 {% block title %}Dashboard{% endblock %}
+
 {% block content %}
-<h2>Welcome, {{ current_user.username }}</h2>
-<form method="POST">
-    {{ form.hidden_tag() }}
-    {{ form.title.label }} {{ form.title }}<br>
-    {{ form.description.label }} {{ form.description }}<br>
-    {{ form.submit }}
-</form>
-<ul>
-    {% for task in tasks %}
-    <li>{{ task.title }} - {{ "Completed" if task.completed else "Pending" }}</li>
-    {% endfor %}
-</ul>
-<a href="{{ url_for('main.logout') }}">Logout</a>
+<div class="column">
+    <h2>Bienvenido, {{ current_user.username }}</h2>
+    <h3>Tareas actuales</h3>
+    <ul class="task-list">
+        {% for task in tasks %}
+        <li class="task-item">
+            <span class="task-title">{{ task.title }} - {{ "Completed" if task.completed else "Pending" }}</span>
+            <input type="checkbox" disabled {{ 'checked' if task.completed else '' }} class="task-checkbox">
+            <a href="{{ url_for('main.edit_task', task_id=task.id) }}" class="edit-btn">Edit</a>
+            <form method="POST" action="{{ url_for('main.delete_task', task_id=task.id) }}" style="display:inline;">
+                {{ form.hidden_tag() }}
+                <button type="submit" class="delete-btn" onclick="return confirm('¿Estás seguro de que deseas eliminar esta tarea?');">Delete</button>
+            </form>
+        </li>
+        {% endfor %}
+    </ul>
+</div>
+<div class="column">
+    <div class="dashboard-container">
+        <a href="{{ url_for('main.logout') }}" class="logout-btn">Cerrar sesion</a>
+        
+
+        <div class="task-form">
+            <h3>Añadir nueva tarea</h3>
+            <form method="POST">
+                {{ form.hidden_tag() }}
+                <div class="form-holder">
+                    {{ form.title.label }}
+                    {{ form.title(class="form-controlx") }}
+                </div>
+                <div class="form-holder">
+                    {{ form.description.label }}
+                    {{ form.description(class="form-controlx") }}
+                </div>
+                <div class="form-holder">
+                    {{ form.completed.label }}
+                    {{ form.completed }}
+                </div>
+                <div class="form-holder">
+                    {{ form.submit(class="btn-submit") }}
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
 {% endblock %}

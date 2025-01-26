@@ -1,0 +1,35 @@
+{% extends "layout.html" %}
+
+{% block title %}Editar tareas{% endblock %}
+
+{% block content %}
+<div class="edit-task-container">
+    <h2>Bienvenido/a, {{ current_user.username }}</h2>
+    <h3>Editar Tarea</h3>
+    
+    <form method="POST" class="task-form">
+        {{ form.hidden_tag() }}
+        
+        <div class="form-field">
+            {{ form.title.label }}
+            {{ form.title }}
+        </div>
+
+        <div class="form-field">
+            {{ form.description.label }}
+            {{ form.description }}
+        </div>
+
+        <div class="form-field">
+            {{ form.completed.label }}
+            {{ form.completed }}
+        </div>
+        <div class="form-field">
+            <button type="submit">Modificar tarea</button>
+        </div>
+        
+    </form>
+    
+    <a href="{{ url_for('main.dashboard') }}" class="back-link">Regresar al Dashboard</a>
+</div>
+{% endblock %}

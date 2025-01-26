@@ -1,12 +1,40 @@
 {% extends "layout.html" %}
+
 {% block title %}Register{% endblock %}
+
 {% block content %}
-<h2>Register</h2>
-<form method="POST">
-    {{ form.hidden_tag() }}
-    {{ form.username.label }} {{ form.username }}<br>
-    {{ form.password.label }} {{ form.password }}<br>
-    {{ form.confirm_password.label }} {{ form.confirm_password }}<br>
-    {{ form.submit }}
-</form>
+<!-- Wrapper -->
+<div class="wrapper">
+    <div class="inner">
+        <form method="POST">
+            <h3>Register</h3>
+            {{ form.hidden_tag() }}
+
+            <!-- Username field -->
+            <div class="form-holder">
+                <span class="lnr lnr-user"></span>
+                {{ form.username(class="form-control", placeholder="Username") }}
+            </div>
+
+            <!-- Password field -->
+            <div class="form-holder">
+                <span class="lnr lnr-lock"></span>
+                {{ form.password(class="form-control", placeholder="Password") }}
+            </div>
+
+            <!-- Confirm Password field -->
+            <div class="form-holder">
+                <span class="lnr lnr-lock"></span>
+                {{ form.confirm_password(class="form-control", placeholder="Confirm Password") }}
+            </div>
+
+            <!-- Submit button -->
+            <div class="form-holder">
+                {{ form.submit(class="btn-submit") }}
+            </div>
+        </form>
+        <img src="{{ url_for('static', filename='images/image-1.png') }}" alt="" class="image-1">
+    </div>
+</div>
+
 {% endblock %}

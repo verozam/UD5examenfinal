@@ -18,4 +18,5 @@ class RegisterForm(FlaskForm):
 class TaskForm(FlaskForm):
     title = StringField('Title', validators=[InputRequired(), Length(max=200)])
     description = TextAreaField('Description')
-    submit = SubmitField('Add Task')
+    completed = BooleanField('Completed') 
+    submit = SubmitField('Agregar tarea')
