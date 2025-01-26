@@ -10,8 +10,8 @@
 1. Clona este repositorio:
 
    ```bash
-   git clone <URL_DEL_REPOSITORIO>
-   cd <NOMBRE_DEL_PROYECTO>
+   git clone https://github.com/verozam/UD5examenfinal.git
+   cd UD5examenfinal
    ```
 
 2. Crea y activa un entorno virtual:
