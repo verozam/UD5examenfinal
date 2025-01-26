@@ -40,3 +40,12 @@
    ```bash
     flask run
    ```
+
+URL base: http://127.0.0.1:5000/
+
+Login:
+http://127.0.0.1:5000/login
+
+Credenciales para revisar el examen:
+Username: admin
+Password: admin
